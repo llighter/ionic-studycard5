@@ -26,7 +26,10 @@ export class AuthService {
     , private loadingController: LoadingController
   ) {
     this.user$ = this.afauth.authState.pipe(
-      switchMap(user => (user ? db.doc$(`users/${user.uid}`) : of(null)))
+      switchMap(user => {
+        db.doc$(`users/${user.uid}`).subscribe(_ => console.log(_));
+        return (user ? db.doc$(`users/${user.uid}`) : of(null))
+      })
     );
 
     this.handleRedirect();
@@ -78,14 +81,17 @@ export class AuthService {
   }
 
   async googleLogin() {
+    console.log(`[googleLogin] Start!`);
     try {
       let user;
 
       if (this.platform.is('cordova')) {
+        console.log(`[googleLogin] cordova!`);
         user = await this.nativeGoogleLogin();
         console.log('googleLogin()');
       } else {
-        await this.setRedirect(true);
+        console.log(`[googleLogin] web!`);
+        this.setRedirect(true);
         const provider = new auth.GoogleAuthProvider();
         user = await this.afauth.signInWithRedirect(provider);
       }
