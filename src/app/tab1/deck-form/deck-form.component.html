@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="!deck">Create New Deck</ion-title>
+    <ion-title *ngIf="deck">Update {{ deck.id }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content padding>
+  <div></div>
+
+  <form [formGroup]="deckForm" (ngSubmit)="createDeck()">
+    <ion-label>Deck Title</ion-label>
+    <ion-textarea formControlName="title" type="primary" placeholder="your deck's title"></ion-textarea>
+
+    <ion-button [disabled]="deckForm.invalid" type="submit">{{ deck ? 'Update' : 'Create!' }}</ion-button>
+    <ion-button (click)="cancel()" color="danger">Cancel</ion-button>
+  </form>
+</ion-content>
