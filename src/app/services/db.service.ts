@@ -27,11 +27,11 @@ export class DbService {
   doc$ (path) {
     return this.afs
       .doc(path)
-      .snapshotChanges()
+      .valueChanges()
       .pipe(
         map(doc => {
           // TODO: Check doc.payload.data
-          return { id: doc.payload.id, ...doc.payload.data };
+          return doc;
         })
       );
   }

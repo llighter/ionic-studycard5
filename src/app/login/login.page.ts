@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,12 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router
-    , private auth: AuthService
+    , private afAuth: AngularFireAuth
   ) { }
 
   async ngOnInit() {
-    const uid = await this.auth.uid();
-    const isLoggedIn = !!uid;
+    const user = await this.afAuth.currentUser;
+    const isLoggedIn = !!user;
 
     if (isLoggedIn) {
       this.router.navigate(['']);
