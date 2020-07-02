@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
+    "@angular/service-worker": "~9.1.6",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/firebase": "^5.27.0",
     "@ionic-native/google-plus": "^5.27.0",

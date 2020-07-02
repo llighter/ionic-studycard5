@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { IonicStorageModule } from "@ionic/storage";
 import { environment } from 'src/environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,7 @@ import { environment } from 'src/environments/environment';
     , AngularFireModule.initializeApp(environment.firebaseConfig)
     , AngularFireAuthModule
     , AngularFirestoreModule
-    , IonicStorageModule.forRoot()
+    , IonicStorageModule.forRoot(), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     Firebase,
