@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="!card">Create New Card</ion-title>
+    <ion-title *ngIf="card">Update {{ card.id }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="cardForm" (ngSubmit)="createCard()">
+    <ion-label>Question</ion-label>
+    <ion-textarea formControlName="question" type="primary" placeholder="your question"></ion-textarea>
+
+    <ion-label>Answer</ion-label>
+    <ion-textarea formControlName="answer" type="primary" placeholder="your answer"></ion-textarea>
+
+    <ion-label>Source</ion-label>
+    <ion-textarea formControlName="source" type="primary" placeholder="your source"></ion-textarea>
+
+    <ion-button [disabled]="cardForm.invalid" type="submit">{{ card ? 'Update' : 'Create!' }}</ion-button>
+    <ion-button (click)="cancel()" color="danger">Cancel</ion-button>
+  </form>
+</ion-content>

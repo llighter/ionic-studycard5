@@ -7,6 +7,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { DeckFormComponent } from './deck-form/deck-form.component';
+import { DeckDetailComponent } from './deck-detail/deck-detail.component';
+import { CardFormComponent } from './card-form/card-form.component';
 
 @NgModule({
   imports: [
@@ -17,7 +19,12 @@ import { DeckFormComponent } from './deck-form/deck-form.component';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page, DeckFormComponent],
+  declarations: [
+    Tab1Page,
+    DeckFormComponent,
+    DeckDetailComponent,
+    CardFormComponent
+  ],
   entryComponents: [DeckFormComponent]
 })
 export class Tab1PageModule {}
