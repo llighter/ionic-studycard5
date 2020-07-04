@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Temperary hard coded to go home page -->
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="presentCardForm()">
+      <ion-button fill="clear">
+        <ion-icon size="large" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title *ngIf="deck$ | async as deck">{{ deck.title }}</ion-title> -->
+    <ion-title>{{ deck.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- TODO: Why this way isn't working? -->
+  <!-- <h3> {{deck$.title | async}} </h3> -->
+
+  <ion-segment (ionChange)="updateFilter($event.detail.value)"color="dark">
+    <ion-segment-button value="1" checked>
+      <ion-badge color="danger">{{ stageCount[1] }}</ion-badge>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-badge color="warning">{{ stageCount[2] }}</ion-badge>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <ion-badge color="success">{{ stageCount[3] }}</ion-badge>
+    </ion-segment-button>
+    <ion-segment-button value="4">
+      <ion-badge color="primary">{{ stageCount[4] }}</ion-badge>
+    </ion-segment-button>
+    <ion-segment-button value="5">
+      <ion-badge color="medium">{{ stageCount[5] }}</ion-badge>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-card class="study-card" *ngIf="filtered"
+    (click)="flipCard()"
+    (swipeup)="success()"
+    (swipedown)="fail()"
+    >
+    <ion-item>
+      <ion-label>
+        <a (click)="openBrowser(filtered.source); $event.stopPropagation();"><ion-icon name="link"></ion-icon></a>
+      </ion-label>
+      <ion-button fill="clear" color="dark" slot="end" (click)="presentCardForm(filtered); $event.stopPropagation();">
+        <ion-icon name="build"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-card-content class="card-detail question" *ngIf="isFront">
+      {{ filtered.question }}
+    </ion-card-content>
+    <ion-card-content class="card-detail answer" *ngIf="!isFront">
+      {{ filtered.answer }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="fillStage()">
+    <ion-fab-button color="dark">
+      <ion-icon size="large" name="battery-charging"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
