@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -19,11 +19,22 @@ import { IonicStorageModule } from "@ionic/storage";
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import * as Hammer from 'hammerjs';
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any> {
+    // override hammerjs default configuration
+    'swipe': { direction: Hammer.DIRECTION_ALL }
+  };
+}
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule
+    , HammerModule
     , IonicModule.forRoot()
     , AppRoutingModule
     , AngularFireModule.initializeApp(environment.firebaseConfig)
@@ -36,7 +47,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     StatusBar,
     GooglePlus,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ],
   bootstrap: [AppComponent]
 })
