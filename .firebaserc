@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "studycard-251e3"
+  },
+  "targets": {
+    "studycard-251e3": {
+      "hosting": {
+        "studycard-251e3": [
+          "studycard-251e3"
+        ]
+      }
+    }
   }
 }

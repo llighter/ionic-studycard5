@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "www",
+    "target": "studycard-251e3",
     "ignore": [
       "firebase.json",
       "**/.*",
