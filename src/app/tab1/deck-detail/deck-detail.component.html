@@ -19,8 +19,8 @@
   <!-- TODO: Why this way isn't working? -->
   <!-- <h3> {{deck$.title | async}} </h3> -->
 
-  <ion-segment (ionChange)="updateFilter($event.detail.value)"color="dark">
-    <ion-segment-button value="1" checked>
+  <ion-segment (ionChange)="updateFilter($event.detail.value)" color="dark" value="1">
+    <ion-segment-button value="1">
       <ion-badge color="danger">{{ stageCount[1] }}</ion-badge>
     </ion-segment-button>
     <ion-segment-button value="2">
@@ -61,7 +61,9 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="fillStage()">
     <ion-fab-button color="dark">
-      <ion-icon size="large" name="battery-charging"></ion-icon>
+      <mat-icon [matBadge]="stageCount[0]" matBadgeColor="warn">
+        battery_charging_full
+      </mat-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
