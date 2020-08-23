@@ -65,6 +65,7 @@ export class DeckDetailComponent implements OnInit {
       shareReplay(1)
     );
 
+    // TODO: Understanding this code
     // Get first item with specific stage
     this.filter.pipe(
       switchMap(stage => {
@@ -79,6 +80,8 @@ export class DeckDetailComponent implements OnInit {
     ).subscribe(cards => {
       this.filtered = cards[0];
     });
+
+    this.updateFilter(1);
   }
 
   updateFilter(val) {
