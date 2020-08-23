@@ -20,6 +20,8 @@ import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import * as Hammer from 'hammerjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any> {
@@ -40,7 +42,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     , AngularFireModule.initializeApp(environment.firebaseConfig)
     , AngularFireAuthModule
     , AngularFirestoreModule
-    , IonicStorageModule.forRoot(), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    , IonicStorageModule.forRoot(), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), BrowserAnimationsModule
   ],
   providers: [
     Firebase,
